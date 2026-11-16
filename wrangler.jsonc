@@ -1,0 +1,43 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "ai-agent-worker",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-10-06",
+	"observability": {
+		"enabled": true
+	},
+	"upload_source_maps": true,
+	"d1_databases": [
+		{
+			"binding": "chat_history_db",
+			"database_name": "chat-history-db",
+			"database_id": "168f5ff3-43f1-41ec-96fb-182750f4a2a7"
+		}
+	],
+	"vectorize": [
+		{
+			"binding": "VECTORIZE",
+			"index_name": "kb_documents",
+			"remote": true
+		}
+	],
+	"r2_buckets": [
+		{
+			"binding": "DOCUMENTS_BUCKET",
+			"bucket_name": "ai-kb-files"
+		}
+	],
+	"kv_namespaces": [
+		{
+			"binding": "KB_META",
+			"id": "1c68c3dac2014cf8941f384cf6497176",
+			"remote": true
+		}
+	],
+"vars": {
+	"DRIVE_FOLDER_ID": "1MiRZ_x0aJVmFMwR98stpHjUFU16QITP6",
+    "GOOGLE_CLIENT_ID": "151018532625-avsbu30pvrovns0d1pk5s7qcibnbhdsp.apps.googleusercontent.com",
+    "GOOGLE_CLIENT_SECRET": "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",
+    "GOOGLE_REFRESH_TOKEN": "1//04ymmi7vrQuVOCgYIARAAGAQSNwF-L9IrYwM0mmRAVFNUhRCSJf0cYWOkYFAr6t6sChtbGa0AyUvRQJta_KyWMgvEa2hu01dV2Vg"
+  }
+}
