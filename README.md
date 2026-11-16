@@ -38,10 +38,8 @@ graph TD
     B -->|chat| H[Kiểm tra giờ 00:00-07:00 & hạn mức 5 lượt/8h trong D1]
     H --> I[Tìm Top-3 FAQ + Top-15 đoạn trong Vectorize >= 0.16]
     I --> J[Gửi ngữ cảnh cho gpt-4o-mini sinh câu trả lời]
-Các bước nạp tài liệu từ Google Drive:Tải file từ Google Drive và tách lấy nội dung chữ.Cắt văn bản dài thành các đoạn nhỏ (chunk size: 1200, gối nhau overlap: 300).Gọi mô hình text-embedding-3-small để đổi từng đoạn chữ thành vector số.Lưu các vector này vào kho kb_documents trên Cloudflare Vectorize.Các đường dẫn quản trị (Admin Endpoints):GET /admin/sync-ui: Mở giao diện web để chọn và đồng bộ file.GET /admin/list-drive-files & GET /admin/download-drive-file: Xem danh sách và tải file từ Google Drive.POST /admin/ingest-text & POST /admin/run-sync: Nạp văn bản đã tách hoặc chạy đồng bộ trên server.GET /admin/sync-status & GET /admin/trace: Xem kết quả đồng bộ trong KB_META và kiểm tra log truy vấn.🛠️ Công nghệ sử dụngCông nghệDùng để làm gìCloudflare Workers & HonoChạy code backend (bằng TypeScript) trực tiếp trên server của Cloudflare, xử lý API /chat và /admin/*.Cloudflare Vectorize (kb_documents)Lưu trữ các vector tài liệu và tìm kiếm đoạn văn bản có ý nghĩa giống với câu hỏi của khách.Cloudflare D1 (chat_history_db)Cơ sở dữ liệu SQL dùng để lưu lịch sử trò chuyện theo session_id và đếm số lượt khách đã hỏi.Cloudflare R2 (ai-kb-files)Kho lưu trữ file tĩnh, dùng để chứa file câu hỏi thường gặp FAQs.txt.Cloudflare KV (KB_META)Bộ nhớ lưu nhanh chữ ký file (MD5 manifest), câu gợi ý của AI (lưu 24 giờ) và trạng thái đồng bộ.OpenAI & LangChainDùng text-embedding-3-small để tạo vector và gpt-4o-mini để viết câu trả lời tiếng Việt.PDF.js & Mammoth.jsĐọc nội dung chữ từ file .PDF và .DOCX ngay trên trình duyệt tại trang /admin/sync-ui.📂 Cấu trúc thư mục(Lưu ý: Bản gốc chưa liệt kê cây thư mục chi tiết, dưới đây là cấu trúc chuẩn của dự án Cloudflare Workers để nhóm kiểm tra và xác nhận)PlaintextGOAi-Workforce-Chatbot/
-├── src/                        # Chứa mã nguồn chính của Worker (Hono routes, xử lý RAG) [CẦN BỔ SUNG: xác nhận tên file trong src]
-├── test/                       # Chứa file kiểm thử (index.spec.ts)
-├── sync-kb.mjs                 # Script chạy ở máy cá nhân để quét thư mục Drive và nạp vector
-├── schema.sql                  # File tạo bảng dữ liệu lịch sử chat cho Cloudflare D1
-├── wrangler.jsonc              # File cấu hình kết nối D1, Vectorize, R2, KV của Cloudflare
-└── package.json                # Khai báo các thư viện sử dụng trong dự án
+
+
+
+
+
